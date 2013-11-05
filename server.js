@@ -3,6 +3,7 @@
 var express = require('express'),
     http = require('http'),
     path = require('path'),
+    index = require('./routes/index'),
     api = require('./lib/api');
 
 var app = express();

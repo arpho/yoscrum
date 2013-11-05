@@ -9,6 +9,7 @@ angular.module('yoscrumApp')
     $http.get('/api/projects').
     success(function(data) {
       console.log('rout di ng');
-      $scope.projects = data.projects;
+        console.log(data)
+      $scope.projects = data;
     });
   });

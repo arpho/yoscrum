@@ -9,7 +9,7 @@ angular.module('yoscrumApp', [
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'ProjectListCtrl'
       })
       .otherwise({
         redirectTo: '/'

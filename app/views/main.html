@@ -1,8 +1,8 @@
 <div class="hero-unit">
   <h1>'Allo, 'Allo!</h1>
-  <p>You now have</p>
+  <p>Projects you worked on</p>
   <ul>
-      <li ng-repeat="thing in projects">{{thing.nome}}</li>
+      <li ng-repeat="thing in projects"><a href="/project/{{thing.rid}}">{{thing.nome}}</a></li>
   </ul>
   <p>installed.</p>
   <h3>Enjoy coding! - Yeoman</h3>

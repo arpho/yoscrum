@@ -30,13 +30,22 @@ body {
     line-height: 1;
     letter-spacing: -1px;
 }
-.codice {
-  color: #aa9998;
-}
-.release {
-  color: #aa9999;
+
+
+.left {
+  position: relative;
+  top: -184px;
 }
 
-.project {
-  color: #ee2200;
+.right {
+  position: relative;
+  left: 690px;
+  top: 262px;
+}
+
+.ok {
+  color: green;
+}
+.ko {
+    color: red;
 }

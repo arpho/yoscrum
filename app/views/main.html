@@ -1,8 +1,23 @@
+
+<div class='right'>
+    
+Filtra per nome: <input ng-model="query">
+    <p>
+        Filtra per cliente
+    <select ng-model="customer">
+        
+        <option ng-repeat= "c in customers"value="c">{{c}}</option>
+      </select>
+    </p>
+</div>
 <div class="hero-unit">
   <head><h1> Projects</h1></head>
+
   <p>Projects you worked on</p>
   <ul>
-      <li ng-repeat="thing in projects"><a href="/#/project/:{{thing.rid}}">{{thing.nome}}</a></li>
+      <li ng-repeat="thing in projects| filter:query |filter:customer"><a href="/#/project/:{{thing.rid}}">{{thing.nome}}</a> {{thing.customer}}</li>
   </ul>
-  <h3>Enjoy coding! - Yeoman</h3>
+  <h3>Enjoy coding! - Yoscrum</h3>
 </div>
+<div class='left'><a href='/#/customers'>lista clienti</a></div>
+

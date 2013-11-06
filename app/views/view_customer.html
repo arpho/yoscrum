@@ -1,0 +1,14 @@
+<html>
+    <head>
+    <title>{{customer.nome}} {{customer.cognome}}</title>
+        <h1>{{customer.nome}} {{customer.cognome}}</h1>
+    </head>
+<body>
+    <div id='projects_customer'>
+    <ul>
+    <li ng-repeat="t in customer.projects">{{t.nome}}<i> {{t.codice}} </i>{{t.release}} {{t.deadLine}}<span ng-class="{ok:t.completato,ko:!t.completato}" <u>completato:</u>{{t.completato | checkmark}}</li>    
+    </ul>
+    
+    </div>
+    </body>
+</html>

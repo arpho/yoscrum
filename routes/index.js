@@ -46,7 +46,8 @@ customers_list = function(req,res){
       //devo normalizzare i customer espongo @rid come rid
     for (var i=0;i<out.length;i++){
       out[i].rid =':' + out[i]['@rid'].substring(1)}
-      res.render("customers_list",{customer:out,title:'lista clienti'})
+      //res.render("customers_list",{customer:out,title:'lista clienti'})
+        res.send(out,200)
     })
   }
 new_project_form = function(req,res){
@@ -100,19 +101,25 @@ function extractIds(s){
   return out
 }
 view_customer = function(req,res){
-  var rid = '#' + req.params.id.substring(1);
+    debug( req.params.id)
+  var rid = '#' + req.params.id.substring(2);
+    debug('cerco un cliente')
+    debug(rid)
   var async = require('async')
   async.parallel([
     function(callback){
       query = "select from customer where @rid= " + rid
+      debug(query)
       module.db.command(query,function(e,o){if(e){return console.dir(e)} callback(e,o)})
   },
   function(callback){
-    query ="select in_requires.nome ,@rid,nome from project where in_requires=" + rid
+    query ="select in_requires.nome ,@rid,nome,codice,release,completato,deadLine from project where in_requires=" + rid
+    debug(query)
       module.db.command(query,function(e,o){if(e){return console.dir(e)} callback(e,o)})
   },
   function(callback){
     query = "select from telephone where in_answers =" +rid
+    debug(query)
     module.db.command(query,function(e,o){if(e){return console.dir(e)} callback(e,o)})
   }
   ], function(e, results){
@@ -126,7 +133,8 @@ view_customer = function(req,res){
       debug(out)
       //aggiungo il campo rid a customer
       results[0][0].rid = rid.substring(1)
-      res.render("customer_view",{customer:results[0][0]})
+      //res.render("customer_view",{customer:results[0][0]})
+      res.send(out,200)
     })
   debug(rid)
   /*module.db.command(query,function(e,o){if(e){return console.dir(e)}
@@ -213,12 +221,11 @@ new_payment = function(req,res){
   res.render('new_payment',{title: 'Nuovo Pagamento',Project_id:Ids[0],Customer_id:Ids[1]})
 }
 new_customer = function(req,res){
-  customer = {
-    nome: req.body.nome,
-    data_inserimento:new Date()
-  }
+  customer = req.body
+  customer.data_inserimento = new Date()
   module.db.createVertex(customer,{"class":"Customer"},function(err,c){
-    res.redirect("/api/customers_list")
+    //res.redirect("/api/customers_list")
+      res.redirect('/#/customers')
   })
   
 }

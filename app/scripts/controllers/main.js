@@ -8,8 +8,11 @@ angular.module('yoscrumApp')
   }).controller('ProjectListCtrl',function($scope,$http){
     $http.get('/api/projects').
     success(function(data) {
-      console.log('rout di ng');
-        console.log(data)
       $scope.projects = data;
     });
-  });
+  }).controller('ProjectCtrl',function($scope,$http,$routeParams){
+    $http.get('api/project/'+$routeParams.ProjectId).success(function(data){
+        $scope.project = data;
+        console.log(data)
+    })
+});

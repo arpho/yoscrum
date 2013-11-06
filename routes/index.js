@@ -397,7 +397,8 @@ view_project = function(req,res){
       debug(p)
       
       p.rid = p.rid.substring(1) // rimuovo #
-      res.render('project_view',{title:'visualizza '+ p.nome + ' ' + p.codice,project:p})
+      //res.render('project_view',{title:'visualizza '+ p.nome + ' ' + p.codice,project:p})
+      res.send(p,200)
       })
     query = 'select nome,@rid as rid, release, codice, in_requires.nome as customer,in_requires as customer_id from project where @rid =' + rid
     /*module.db.command(query,function(e,p){

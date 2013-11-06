@@ -10,7 +10,10 @@ angular.module('yoscrumApp', [
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'ProjectListCtrl'
-      })
+      }).when('/project/:ProjectId',{
+        templateUrl:'views/project.html',
+        controller: 'ProjectCtrl'
+    })
       .otherwise({
         redirectTo: '/'
       });

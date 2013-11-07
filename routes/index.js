@@ -186,11 +186,26 @@ new_project  = function(req,res){
     wiki :req.body.wiki,
     data_inserimento : new Date()
   }
-  debug(project)
-  var customer = req.body.customer
+  var project = req.body;
+    project.data_inserimento = new Date();
+  debug(project);
+  //var customer = req.body.customer
   // cerco il cliente
-  debug(customer)
-  queryCustomer = "select from customer where @rid =" +customer
+  //debug(customer)
+var customer_id = project.customer_rid;
+    // creo il nuovo progetto
+    module.db.createVertex(project,{"class":"Project"},function(e,p){
+        if (e){console.dir(e);}
+        var query = 'create edge  requires from ' + customer_id + ' to ' + p['@rid'];
+        debug(query);
+        module.db.command(query,function(e,o){if(e){ // creo l'arco cliente progetto
+                                                return console.dir(e)}
+                                              debug(o);
+                                             // res.redirect('/#customer/:'+customer_id);
+                                             })
+        
+    })
+ /* queryCustomer = "select from customer where @rid =" +customer
   debug(queryCustomer)
   module.db.command(queryCustomer,function(e,c){
     debug(c)
@@ -211,7 +226,7 @@ new_project  = function(req,res){
       })
     })
     res.redirect('/api/projects_list')
-  })
+  })*/
 }
 new_payment = function(req,res){
   var ids = req.params.id

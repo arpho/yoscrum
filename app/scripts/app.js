@@ -23,6 +23,9 @@ angular.module('yoscrumApp', [
     }).when('/customer/:CustomerId',{
         templateUrl: 'views/view_customer.html',
         controller:'CustomerCtrl'
+    }).when('/new_project/:CustomerId',{
+        templateUrl: 'views/new_project.html',
+        controller: 'New_projectCtrl'
     })
       .otherwise({
         redirectTo: '/'

@@ -1,10 +1,12 @@
-'use strict';
+'use strict';//'FundooModalApp', []
 
 angular.module('yoscrumApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'scrumFilters'
+  'scrumFilters',
+  'ui.bootstrap',
+  'fundoo.services',
 ])
   .config(function ($routeProvider) {
     $routeProvider

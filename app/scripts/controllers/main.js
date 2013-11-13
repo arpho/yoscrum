@@ -32,12 +32,31 @@ angular.module('yoscrumApp')
         $scope.save = function(user){
             $http.post('api/new_customer',user)}
     }).controller('CustomerCtrl',function($scope,$http,$routeParams){
+    $scope.showDialog = function () {
+    var msg = 'Hello World!';
+    var options = {
+      resolve: {
+        msg: function () { return msg; }
+      }
+    };
+    var dialog = $dialog.dialog(options);
+    
+    dialog.open('dialog.html', 'DialogCtrl');
+  };
     console.log($routeParams)
     $http.get('api/customer/:'+$routeParams.CustomerId).success(function(data){
         $scope.customer = data;
+        $scope.new_project = function(){console.log('new project');
+                                       }
     })
-}).controller('New_projectCtrl',function($scope,$http,$routeParams){
+}).controller('New_projectCtrl',function($scope,$http,$routeParams,createDialogService){
     //console.log($routeParams);
+    createDialog('views/dialog.html',{
+    id : 'new_project',
+    title: 'crea nuovo progetto',
+    backdrop: false,
+    success:{label: 'Yay', fn: function() {console.log('Successfully closed simple modal');}},
+}, {msg:'blabla'});
     var CustomerId = $routeParams.CustomerId;
     $scope.project = {};
     //$scope.project.wiki = 'http://localhost/wiki/index.php/'+$scope.project.nome;

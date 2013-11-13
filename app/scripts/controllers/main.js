@@ -43,7 +43,6 @@ angular.module('yoscrumApp')
     
     dialog.open('dialog.html', 'DialogCtrl');
   };
-    console.log($routeParams)
     $http.get('api/customer/:'+$routeParams.CustomerId).success(function(data){
         $scope.customer = data;
         $scope.new_project = function(){console.log('new project');

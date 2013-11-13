@@ -5,8 +5,6 @@ angular.module('yoscrumApp', [
   'ngResource',
   'ngSanitize',
   'scrumFilters',
-  'ui.bootstrap',
-  'fundoo.services',
 ])
   .config(function ($routeProvider) {
     $routeProvider
